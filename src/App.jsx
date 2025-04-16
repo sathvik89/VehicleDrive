@@ -12,7 +12,6 @@ export default function App() {
         flexDirection: "column",
       }}
     >
-      <h1>Vehicle Moving</h1>
       <Map />
     </div>
   );
