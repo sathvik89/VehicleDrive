@@ -25,7 +25,6 @@ const vehicleRoute = [
   { latitude: 17.3905, longitude: 78.4868 },
   { latitude: 17.391, longitude: 78.4866 },
   { latitude: 17.3915, longitude: 78.4868 },
-  { latitude: 17.392, longitude: 78.493671 },
 ];
 export default function Map() {
   const [currPosition, setCurrPosition] = useState(vehicleRoute[0]);
@@ -42,7 +41,7 @@ export default function Map() {
         clearInterval(id);
       }
     }, 3000); // Update every 3 seconds
-    return () => clearInterval(id); 
+    return () => clearInterval(id);
   }, [index]); //everytime index updates to +1 useEffect runs ..
 
   return (
