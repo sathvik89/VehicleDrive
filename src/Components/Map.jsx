@@ -10,22 +10,6 @@ const vehicleIcon = new L.Icon({
   iconAnchor: [19, 28],
 });
 
-const vehicleRoute = [
-  { latitude: 17.385044, longitude: 78.486671 },
-  { latitude: 17.3855, longitude: 78.4868 },
-  { latitude: 17.386, longitude: 78.487 },
-  { latitude: 17.3865, longitude: 78.4872 },
-  { latitude: 17.387, longitude: 78.487 },
-  { latitude: 17.3875, longitude: 78.4868 },
-  { latitude: 17.388, longitude: 78.4866 },
-  { latitude: 17.3885, longitude: 78.4868 },
-  { latitude: 17.389, longitude: 78.487 },
-  { latitude: 17.3895, longitude: 78.4872 },
-  { latitude: 17.39, longitude: 78.487 },
-  { latitude: 17.3905, longitude: 78.4868 },
-  { latitude: 17.391, longitude: 78.4866 },
-  { latitude: 17.3915, longitude: 78.4868 },
-];
 export default function Map() {
   const [currPosition, setCurrPosition] = useState(vehicleRoute[0]);
   const [index, setIndex] = useState(0); //start count from 0
@@ -48,11 +32,9 @@ export default function Map() {
     <MapContainer
       center={[currPosition.latitude, currPosition.longitude]}
       zoom={16}
-      scrollWheelZoom={false}
       style={{
         height: "100vh",
         width: "100%",
-        border: "2px solidblack",
       }}
     >
       <MyComponent
@@ -60,6 +42,24 @@ export default function Map() {
         currPosition={currPosition}
         vehicleRoute={vehicleRoute}
       />
+      
     </MapContainer>
   );
 }
+
+const vehicleRoute = [
+  { latitude: 17.385044, longitude: 78.486671 },
+  { latitude: 17.3855, longitude: 78.4868 },
+  { latitude: 17.386, longitude: 78.487 },
+  { latitude: 17.3865, longitude: 78.4872 },
+  { latitude: 17.387, longitude: 78.487 },
+  { latitude: 17.3875, longitude: 78.4868 },
+  { latitude: 17.388, longitude: 78.4866 },
+  { latitude: 17.3885, longitude: 78.4868 },
+  { latitude: 17.389, longitude: 78.487 },
+  { latitude: 17.3895, longitude: 78.4872 },
+  { latitude: 17.39, longitude: 78.487 },
+  { latitude: 17.3905, longitude: 78.4868 },
+  { latitude: 17.391, longitude: 78.4866 },
+  { latitude: 17.3915, longitude: 78.4868 },
+];
