@@ -3,50 +3,58 @@ import { MapContainer } from "react-leaflet";
 import L from "leaflet";
 import icon from "../Icons/car.png";
 import MyComponent from "./MyComponent";
+
 const vehicleIcon = new L.Icon({
   iconUrl: icon,
-  iconSize: [38, 38], // icon size
-  iconAnchor: [10, 35], // icon point touching line
+  iconSize: [30, 30],
+  iconAnchor: [19, 28],
 });
-export default function Map() {
-  const vehicleRoute = [
-    { latitude: 17.38044, longitude: 78.486671 }, // Starting point
-    { latitude: 17.38044, longitude: 78.487671 }, // Move 1 km north-east
-    { latitude: 17.38044, longitude: 78.488671 }, // Move another 1 km north-east
-    { latitude: 17.388044, longitude: 78.489671 }, // Continue moving
-    { latitude: 17.389044, longitude: 78.490671 },
-    { latitude: 17.390044, longitude: 78.491671 },
-    { latitude: 17.391044, longitude: 78.492671 },
-    { latitude: 17.392044, longitude: 78.493671 },
-    { latitude: 17.393044, longitude: 78.494671 },
-    { latitude: 17.394044, longitude: 78.495671 },
-  ];
-  const [currPosition, setCurrPosition] = useState(vehicleRoute[0]);
-  const [path, setPath] = useState([vehicleRoute[0]]);
 
+const vehicleRoute = [
+  { latitude: 17.385044, longitude: 78.486671 },
+  { latitude: 17.3855, longitude: 78.4868 },
+  { latitude: 17.386, longitude: 78.487 },
+  { latitude: 17.3865, longitude: 78.4872 },
+  { latitude: 17.387, longitude: 78.487 },
+  { latitude: 17.3875, longitude: 78.4868 },
+  { latitude: 17.388, longitude: 78.4866 },
+  { latitude: 17.3885, longitude: 78.4868 },
+  { latitude: 17.389, longitude: 78.487 },
+  { latitude: 17.3895, longitude: 78.4872 },
+  { latitude: 17.39, longitude: 78.487 },
+  { latitude: 17.3905, longitude: 78.4868 },
+  { latitude: 17.391, longitude: 78.4866 },
+  { latitude: 17.3915, longitude: 78.4868 },
+  { latitude: 17.392, longitude: 78.493671 },
+];
+export default function Map() {
+  const [currPosition, setCurrPosition] = useState(vehicleRoute[0]);
   const [index, setIndex] = useState(0); //start count from 0
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const id = setInterval(() => {
       if (index < vehicleRoute.length - 1) {
-        //checking if index count is lesser than remaining routs to cover
+        //checking if index count is lesser than remaining rout to cover
         const newPosition = vehicleRoute[index + 1];
         setCurrPosition(newPosition);
-        setPath((prevPath) => [...prevPath, newPosition]);
         setIndex(index + 1);
       } else {
-        clearInterval(interval);
+        clearInterval(id);
       }
-    }, 2000); // Update every 3 seconds
-
-    return () => clearInterval(interval);
+    }, 3000); // Update every 3 seconds
+    return () => clearInterval(id); 
   }, [index]); //everytime index updates to +1 useEffect runs ..
 
   return (
     <MapContainer
       center={[currPosition.latitude, currPosition.longitude]}
-      zoom={23}
-      style={{ height: "100vh", width: "100%" }}
+      zoom={16}
+      scrollWheelZoom={false}
+      style={{
+        height: "100vh",
+        width: "100%",
+        border: "2px solidblack",
+      }}
     >
       <MyComponent
         vehicleIcon={vehicleIcon}

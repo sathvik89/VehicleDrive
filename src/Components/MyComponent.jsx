@@ -7,22 +7,24 @@ export default function MyComponent({
 }) {
   return (
     <div>
+      {/* map tiling */}
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-
+      
+      {/* car icon */}
       <Marker
         position={[currPosition.latitude, currPosition.longitude]}
         icon={vehicleIcon}
       />
 
+      {/* for the line  */}
       <Polyline
-        positions={vehicleRoute.map((point) => [
-          point.latitude,
-          point.longitude,
-        ])}
-        pathOptions={{ color: "red" }}
+        positions={vehicleRoute.map((p) => {
+          return [p.latitude, p.longitude];
+        })}
+        pathOptions={{ color: "blue " }}
       />
     </div>
   );
